@@ -6,9 +6,9 @@ import Dialog from "react-native-dialog";
 import { Header } from "./components/Header";
 import { TODO_STATUS, TabBottomMenu } from "./components/TabBottomMenu";
 import { s } from "./App.style";
+import React from "react";
 import { useEffect, useRef, useState } from "react";
 import uuid from "react-native-uuid";
-import React from "react";
 import { NewTodoBtn } from "./components/NewTodoBtn";
 
 export interface Todo {
@@ -25,7 +25,7 @@ export default function App() {
   const [selectedTab, setSelectedTab] = useState(TODO_STATUS.ALL);
   const [showDialog, setShowDialog] = useState(false);
   const [todoText, setTodoText] = useState("");
-  const scrollViewRef = useRef();
+  const scrollViewRef = useRef<ScrollView>(null);
 
   useEffect(() => {
     loadTodoList();
@@ -121,7 +121,7 @@ export default function App() {
     setShowDialog(false);
     setTodoText("");
     setTimeout(() => {
-      scrollViewRef.current.scrollToEnd();
+      scrollViewRef.current?.scrollToEnd();
     }, 300);
   }
 
